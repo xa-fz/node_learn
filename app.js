@@ -1,10 +1,15 @@
-const handleRoutes = require('./src/routes/blog');
+const queryString = require('querystring');
+
+const handleRoutes = require('./src/routes/interfaces');
 
 const serverHeadler = (req, res) => {
     res.setHeader('Content-type', 'application/json');
 
     const url = req.url;
     req.url = url.split('?')[0];
+
+    // 解析get接口的参数
+    req.query = queryString.parse(url.split('?')[1]);
 
     const blogData = handleRoutes(req, res);
 
