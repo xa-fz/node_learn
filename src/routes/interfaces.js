@@ -2,7 +2,7 @@ const { SuccessModal } = require('../modal/resModal');
 const { getGarde, queryClasses } = require('../utils');
 
 // 处理路由
-const handleRoutes = (req, res) => {
+const handleRoutes = (req, _res) => {
     const method = req.method;
     if (method === 'GET' && req.url === '/api/grade') {
         const school = req.query.school;

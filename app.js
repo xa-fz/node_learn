@@ -4,7 +4,7 @@ const handleRoutes = require('./src/routes/interfaces');
 
 // post接口会出现异步，使用promise
 const getPromiseData = (req) => {
-    const promise = new Promise((resolve, reject) => {
+    const promise = new Promise((resolve) => {
         let strData = '';
         req.on('data', (chunk) => {
             strData += chunk.toString();
