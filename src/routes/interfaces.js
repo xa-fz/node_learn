@@ -1,5 +1,5 @@
 const { SuccessModal } = require('../modal/resModal');
-const { getGarde, queryClasses } = require('../utils');
+const { getGarde, queryClasses, addClass, updateClass } = require('../utils');
 
 // 处理路由
 const handleRoutes = (req, _res) => {
@@ -11,11 +11,24 @@ const handleRoutes = (req, _res) => {
         return new SuccessModal(data);
     }
 
+    // 查询某个年级信息
     if (method === 'POST' && req.url === '/api/grade/queryClass') {
         const body = req.body;
         const data = queryClasses(body);
-        console.log(data,new SuccessModal(data) )
         return new SuccessModal(data);
+    }
+
+    // 新增年级
+    if (method === 'POST' && req.url === '/api/grade/add') {
+        const body = req.body;
+        const data = addClass(body);
+        return new SuccessModal(data);
+    }
+    // 更新年级信息
+    if (method === 'POST' && req.url === '/api/grade/update') {
+        const body = req.body;
+        const data = updateClass(body);
+        return data ? new SuccessModal('Update Successfully'): new ErrorModal('Update Failed');
     }
 }
 

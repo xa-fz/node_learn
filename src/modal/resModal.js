@@ -1,5 +1,5 @@
 class basicModal {
-    constructor(data, message) {
+    constructor(data, message, type) {
         if (typeof data === 'string') {
             this.message = data;
             data = null;

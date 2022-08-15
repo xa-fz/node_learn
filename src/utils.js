@@ -21,7 +21,19 @@ const queryClasses = (data) => {
     return arr.filter((item) => item.grade === data.grade);
 }
 
+// 创建班级
+const addClass = (_data) => {
+    return 'Successfully'
+}
+
+const updateClass = (data) => {
+    const arr_new = arr.map((item) => item.grade === data.grade ? data: item)
+    return arr_new.length > 0
+}
+
 module.exports = {
     getGarde,
-    queryClasses
+    queryClasses,
+    addClass,
+    updateClass
 }
