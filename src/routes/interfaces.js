@@ -5,10 +5,12 @@ const { getGarde, queryClasses, addClass, updateClass } = require('../utils');
 const handleRoutes = (req, _res) => {
     const method = req.method;
     if (method === 'GET' && req.url === '/api/grade') {
-        const school = req.query.school;
+        const num = req.query.num;
         // 可以使用入参去做一些业务上的处理查询等操作
-        const data = getGarde(school);
-        return new SuccessModal(data);
+        const dataPromise = getGarde(num);
+        return dataPromise.then((data) => {
+            return new SuccessModal(data);
+        })
     }
 
     // 查询某个年级信息

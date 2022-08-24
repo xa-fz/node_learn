@@ -63,9 +63,11 @@ const serverHeadler = (req, res) => {
         // 解析get接口的参数
         req.query = queryString.parse(url.split('?')[1]);
         // 返回res
-        const resData = handleRoutes(req, res);
-        if (resData) {
-            res.end(JSON.stringify(resData));
+        const resDataPromise = handleRoutes(req, res);
+        if (resDataPromise) {
+            resDataPromise.then((resData) => {
+                res.end(JSON.stringify(resData))
+            })
             return
         }
         // 如果访问的url并没有声明

@@ -20,5 +20,8 @@
   "homepage": "https://github.com/xa-fz/node_learn#readme",
   "devDependencies": {
     "nodemon": "^2.0.19"
+  },
+  "dependencies": {
+    "mysql": "^2.18.1"
   }
 }

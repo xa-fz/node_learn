@@ -1,3 +1,5 @@
+const { executeSql } = require('./database/mysql');
+
 const arr = [
     {
         grade: 1,
@@ -13,8 +15,8 @@ const arr = [
 
 const getGarde = (data) => {
     console.log(data);
-    // 理论上应该从数据库查询数据,暂时写死假数据
-    return arr
+    let sql = `select * from myschool where grade=${data}`;
+    return executeSql(sql)
 }
 
 const queryClasses = (data) => {
