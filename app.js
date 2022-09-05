@@ -50,9 +50,11 @@ const serverHeadler = (req, res) => {
         // 如果不在回调中执行会产生异步
         req.on('end', () => {
             req.body = JSON.parse(strData);
-            const resData = handleRoutes(req, res);
-            if (resData) {
-                res.end(JSON.stringify(resData));
+            const resDataPromise = handleRoutes(req, res);
+            if (resDataPromise) {
+                resDataPromise.then((resData) => {
+                    res.end(JSON.stringify(resData))
+                })
                 return
             }
             res.writeHead(404, {'Content-type': 'text/plain'});

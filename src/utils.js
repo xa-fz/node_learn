@@ -13,19 +13,18 @@ const arr = [
     }
 ]
 
-const getGarde = (data) => {
-    console.log(data);
-    let sql = `select * from myschool where grade=${data}`;
+const getGarde = ({ grade, teacher }) => {
+    let sql = `select * from myschool where grade=${grade}`;
+    if (teacher) {
+        sql += ` and teacher like '%${teacher}%'`
+    }
     return executeSql(sql)
 }
 
-const queryClasses = (data) => {
-    return arr.filter((item) => item.grade === data.grade);
-}
-
 // 创建班级
-const addClass = (_data) => {
-    return 'Successfully'
+const addGrade = ({grade, teacher, students}) => {
+    let sql = `insert into myschool (grade, teacher, students) values (${grade}, '${teacher}', ${students})`;
+    return executeSql(sql)
 }
 
 const updateClass = (data) => {
@@ -35,7 +34,6 @@ const updateClass = (data) => {
 
 module.exports = {
     getGarde,
-    queryClasses,
-    addClass,
+    addGrade,
     updateClass
 }
